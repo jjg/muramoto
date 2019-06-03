@@ -1,0 +1,7 @@
+[package]
+name = "muramoto"
+version = "0.1.0"
+authors = ["Jason J. Gullickson <mr@jasongullickson.com>"]
+edition = "2018"
+
+[dependencies]
