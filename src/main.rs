@@ -22,7 +22,23 @@ fn handle_connection(mut stream: TcpStream) {
 
   println!("Request: {}", String::from_utf8_lossy(&buffer[..]));
 
+  // TODO: parse request method
+  // TODO: parse request URI
+  // TODO: generate has of URI
   let get = b"GET / HTTP/1.1\r\n";
+
+  // TODO: handle GET request
+  // TODO: load inode
+  // TODO: iterate over blocks
+  // TODO: return block to client
+
+  // TODO: handle POST request
+  // TODO: initialize inode
+  // TODO: iterate over request body
+  // TODO: hash body block
+  // TODO: write block to disk
+  // TODO: update inode
+  // TODO: return result to client
 
   let (status_line, filename) = if buffer.starts_with(get){
     ("HTTP/1.1 200 OK\r\n\r\n", "hello.html")
