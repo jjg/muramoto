@@ -4,6 +4,8 @@ use std::net::TcpListener;
 use std::fs;
 
 fn main() {
+  println!("Starting up...");
+
   let listener = TcpListener::bind("127.0.0.1:8080").unwrap();
 
   for stream in listener.incoming() {
@@ -14,15 +16,34 @@ fn main() {
 }
 
 fn handle_connection(mut stream: TcpStream) {
-  let mut buffer = [0; 512];
 
+  let mut buffer = [0; 512];
   stream.read(&mut buffer).unwrap();
 
-  //println!("Request: {}", String::from_utf8_lossy(&buffer[..]));
-  let contents = fs::read_to_string("hello.html").unwrap();
+  println!("Request: {}", String::from_utf8_lossy(&buffer[..]));
 
-  let response = format!("HTTP/1.1 200 OK\r\n\r\n{}", contents);
+  let get = b"GET / HTTP/1.1\r\n";
 
-  stream.write(response.as_bytes()).unwrap();
-  stream.flush().unwrap();
+  if buffer.starts_with(get) {
+
+
+    let contents = fs::read_to_string("hello.html").unwrap();
+
+    let response = format!("HTTP/1.1 200 OK\r\n\r\n{}", contents);
+
+    stream.write(response.as_bytes()).unwrap();
+    stream.flush().unwrap();
+
+  } else {
+
+    // some other req.
+    let status_line = "HTTP/1.1 404 NOT FOUND \r\n\r\n";
+    let contents = fs::read_to_string("404.html").unwrap();
+
+    let response = format!("{}{}", status_line, contents);
+
+    stream.write(response.as_bytes()).unwrap();
+    stream.flush().unwrap();
+
+  }
 }
