@@ -17,3 +17,5 @@ The starting point for this work is to re-implement essential JSFS features in R
 To that end I will be posting this project to Github.  It won't be the primary repository, but I'll setup a remote there that I can push to, and work on a way to allow others to contribute via that channel if prefered.  
 
 The initial work is based on the [web server example](https://doc.rust-lang.org/book/ch20-00-final-project-a-web-server.html) from [The Rust Book](https://doc.rust-lang.org/book/).  This seemed like an obvious place to start, and since I want to have precise control over the performance and behavior of the server, it avoids leaning on existing HTTP libraries for now.
+
+*Note - use this as a reference for writing good Rust: [Building a Command Line Program](https://doc.rust-lang.org/book/ch12-00-an-io-project.html).*
