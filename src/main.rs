@@ -20,7 +20,9 @@ fn handle_connection(mut stream: TcpStream) {
   let mut buffer = [0; 512];
   stream.read(&mut buffer).unwrap();
 
-  println!("Request: {}", String::from_utf8_lossy(&buffer[..]));
+  //println!("Request: {}", String::from_utf8_lossy(&buffer[..]));
+
+  parse_request(buffer);
 
   // TODO: parse request method
   // TODO: parse request URI
@@ -52,4 +54,12 @@ fn handle_connection(mut stream: TcpStream) {
   stream.write(response.as_bytes()).unwrap();
   stream.flush().unwrap();
 
+}
+
+fn parse_request(req: &[u64]) -> String{
+  println!("Request: {}", req);
+
+  let result = "";
+
+  result
 }
